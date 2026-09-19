@@ -1,0 +1,14 @@
+name: first workflow
+on: push
+
+jobs:
+  validate-html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: hello github action
+        run: echo "this is first workflow"
+
+      - name: bye github action
+        run: echo "bye is first workflow"
+
+
