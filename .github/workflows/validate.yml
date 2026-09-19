@@ -15,3 +15,5 @@ jobs:
 
       - name: validate-js-files
         run: test -f second-example/index.js
+      - name: validate-code-files
+        run: node --check second-example/index.js
