@@ -1,0 +1,35 @@
+name: jobs test
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  validate-html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get-repo-code
+        uses: actions/checkout@v4
+
+      - name: validate-html-files
+        run: test -f second-example/index.html
+
+  validate-js:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get-repo-code
+        uses: actions/checkout@v4
+
+      - name: validate-js-files
+        run: test -f second-example/index.js
+
+  validate-code:
+    needs: [validate-html, validate-js]
+    runs-on: ubuntu-latest
+    steps:
+      - name: get-repo-code
+        uses: actions/checkout@v4
+      - name: validate-code-files
+        run: node --check second-example/index.js 
+      - name: validate-html-files
+        run: npx --yes htmlhint second-example/index.html       
+     
